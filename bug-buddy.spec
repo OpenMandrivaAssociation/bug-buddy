@@ -1,14 +1,10 @@
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.18.0
-Release:	%mkrel 2
+Version:        2.18.1
+Release:	%mkrel 1
 License:	GPL
 Group:		Graphical desktop/GNOME
 Source: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-# gw: patch from Fedora, fix crash on exit
-Patch0: bug-buddy-2.18.0-dupe-apps.patch
-# (fc) 2.18.0-2mdv fix other-binaries detection
-Patch1: bug-buddy-2.18.0-otherbinaries.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnome-menu-devel
 BuildRequires:	gnome-desktop-devel
@@ -34,8 +30,6 @@ also supported.
 
 %prep
 %setup -q
-%patch0 -p1 -b .dup-apps
-%patch1 -p1 -b .otherbinaries
 
 %build
 %configure2_5x --disable-scrollkeeper
@@ -71,5 +65,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*
 %_datadir/icons/hicolor/*/apps/%{name}*
 %{_datadir}/bug-buddy
-
-
