@@ -17,6 +17,7 @@ BuildRequires:	libgnomeui2-devel
 BuildRequires:	libglade2.0-devel
 BuildRequires:	evolution-data-server-devel
 BuildRequires:	libgtop2.0-devel
+BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
 BuildRequires:	perl-XML-Parser
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
