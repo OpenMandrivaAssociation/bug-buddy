@@ -1,6 +1,9 @@
+%define major 0
+%define libname %mklibname breakpad %major
+
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.18.1
+Version:        2.19.0
 Release:	%mkrel 1
 License:	GPL
 Group:		Graphical desktop/GNOME
@@ -18,6 +21,7 @@ BuildRequires:	libsoup-devel >= 2.2.94
 BuildRequires:	perl-XML-Parser
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
+Requires: %libname = %version
 #gw it does a dlopen on libplds4.so
 Requires: %mklibname nspr 4
 Requires: %mklibname nss 3
@@ -27,6 +31,14 @@ bug-buddy is a druid based tool which steps you through the GNOME bug
 submission process.  It can automatically obtain stack traces from core
 files or crashed applications.  Debian and KDE bug tracking systems are
 also supported.
+
+%package -n %libname
+Summary: Crash dump library
+Group: System/Libraries
+
+%description -n %libname
+Breakpad is a set of client and server components which implement a
+crash-reporting system.
 
 %prep
 %setup -q
@@ -40,12 +52,17 @@ also supported.
 rm -rf $RPM_BUILD_ROOT
 
 %makeinstall_std
-
 %find_lang %name
+
+#gw not needed at the moment
+rm -rf %buildroot%_libdir/{libbreakpad{.so,.a,.la},gtk-2.0/modules/libgnomebreakpad*a} %buildroot%_datadir/doc/breakpad*
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post -n %libname -p /sbin/ldconfig
+%postun -n %libname -p /sbin/ldconfig
 
 %post
 %post_install_gconf_schemas %name
@@ -59,9 +76,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %name.lang
 %defattr(-, root, root)
-%doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO
+%doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
 %{_datadir}/applications/*
 %_datadir/icons/hicolor/*/apps/%{name}*
 %{_datadir}/bug-buddy
+
+%files -n %libname
+%defattr(-, root, root)
+%doc google-breakpad/README google-breakpad/AUTHORS
+%_libdir/libbreakpad.so.%{major}*
+%_libdir/gtk-2.0/modules/libgnomebreakpad.so*
