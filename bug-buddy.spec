@@ -24,7 +24,7 @@ BuildRequires:	libgtop2.0-devel
 BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
 BuildRequires:	perl-XML-Parser
-BuildRequires:	intltool
+BuildRequires:	intltool gnome-common
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
 Requires: %libnamegnome = %version
