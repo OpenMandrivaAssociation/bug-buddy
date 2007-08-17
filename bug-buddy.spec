@@ -1,11 +1,12 @@
 %define major 0
 %define libname %mklibname breakpad %major
+%define libnamegnome %mklibname gnomebreakpad
 %define breakpadarch %ix86
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
 Version:        2.19.0
-Release:	%mkrel 2
+Release:	%mkrel 1
 License:	GPL
 Group:		Graphical desktop/GNOME
 Source: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -26,9 +27,7 @@ BuildRequires:	perl-XML-Parser
 BuildRequires:	intltool
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
-%ifarch %breakpadarch
-Requires: %libname = %version
-%endif
+Requires: %libnamegnome = %version
 #gw it does a dlopen on libplds4.so
 Requires: %mklibname nspr 4
 Requires: %mklibname nss 3
@@ -46,6 +45,18 @@ Group: System/Libraries
 %description -n %libname
 Breakpad is a set of client and server components which implement a
 crash-reporting system.
+
+%package -n %libnamegnome
+Summary: GTK+ module for loading the crash dump library
+Group: System/Libraries
+%ifarch %breakpadarch
+Requires: %libname = %version
+%endif
+
+%description -n %libnamegnome
+Breakpad is a set of client and server components which implement a
+crash-reporting system. This is a module for GTK+ to automatically load the
+breakpad library.
 
 %prep
 %setup -q
@@ -100,5 +111,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %doc google-breakpad/README google-breakpad/AUTHORS
 %_libdir/libbreakpad.so.%{major}*
-%_libdir/gtk-2.0/modules/libgnomebreakpad.so*
 %endif
+
+%files -n %libnamegnome
+%defattr(-, root, root)
+%_libdir/gtk-2.0/modules/libgnomebreakpad.so*
