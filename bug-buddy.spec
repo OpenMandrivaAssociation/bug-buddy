@@ -1,13 +1,16 @@
 %define major 0
 %define libname %mklibname breakpad %major
+%define breakpadarch %ix86
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
 Version:        2.19.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		Graphical desktop/GNOME
 Source: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+#gw adapted from svn, allow build on non-i586 by disabling breakpad there
+Patch: bug-buddy-2.19.0-disable-breakpad-on-unsupported-architectures.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnome-menu-devel
 BuildRequires:	gnome-desktop-devel
@@ -20,9 +23,12 @@ BuildRequires:	libgtop2.0-devel
 BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
 BuildRequires:	perl-XML-Parser
+BuildRequires:	intltool
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
+%ifarch %breakpadarch
 Requires: %libname = %version
+%endif
 #gw it does a dlopen on libplds4.so
 Requires: %mklibname nspr 4
 Requires: %mklibname nss 3
@@ -43,6 +49,11 @@ crash-reporting system.
 
 %prep
 %setup -q
+%patch -p1 -b .breakpad
+intltoolize --force
+aclocal
+autoconf
+automake
 
 %build
 %configure2_5x --disable-scrollkeeper
@@ -84,8 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/icons/hicolor/*/apps/%{name}*
 %{_datadir}/bug-buddy
 
+%ifarch %breakpadarch
 %files -n %libname
 %defattr(-, root, root)
 %doc google-breakpad/README google-breakpad/AUTHORS
 %_libdir/libbreakpad.so.%{major}*
 %_libdir/gtk-2.0/modules/libgnomebreakpad.so*
+%endif
