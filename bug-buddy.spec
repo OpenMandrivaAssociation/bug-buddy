@@ -5,13 +5,11 @@
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.19.0
+Version:        2.19.91
 Release:	%mkrel 1
 License:	GPL
 Group:		Graphical desktop/GNOME
 Source: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-#gw adapted from svn, allow build on non-i586 by disabling breakpad there
-Patch: bug-buddy-2.19.0-disable-breakpad-on-unsupported-architectures.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnome-menu-devel
 BuildRequires:	gnome-desktop-devel
@@ -60,11 +58,6 @@ breakpad library.
 
 %prep
 %setup -q
-%patch -p1 -b .breakpad
-intltoolize --force
-aclocal
-autoconf
-automake
 
 %build
 %configure2_5x --disable-scrollkeeper
