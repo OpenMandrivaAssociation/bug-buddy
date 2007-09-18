@@ -5,7 +5,7 @@
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.19.91
+Version:        2.20.0
 Release:	%mkrel 1
 License:	GPL
 Group:		Graphical desktop/GNOME
@@ -71,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %find_lang %name
 
 #gw not needed at the moment
-rm -rf %buildroot%_libdir/{libbreakpad{.so,.a,.la},gtk-2.0/modules/libgnomebreakpad*a} %buildroot%_datadir/doc/breakpad*
+rm -rf %buildroot%_libdir/{%name/libbreakpad{.so,.a,.la},gtk-2.0/modules/libgnomebreakpad*a} %buildroot%_datadir/doc/breakpad*
 
 
 %clean
@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %libname
 %defattr(-, root, root)
 %doc google-breakpad/README google-breakpad/AUTHORS
-%_libdir/libbreakpad.so.%{major}*
+%_libdir/%name/libbreakpad.so.%{major}*
 %endif
 
 %files -n %libnamegnome
