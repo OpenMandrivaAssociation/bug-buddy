@@ -60,7 +60,8 @@ breakpad library.
 %setup -q
 
 %build
-%configure2_5x --disable-scrollkeeper
+
+CFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" CXXFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" %configure2_5x --disable-scrollkeeper
 
 %make
 
