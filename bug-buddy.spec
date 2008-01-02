@@ -23,6 +23,7 @@ BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
 BuildRequires:	perl-XML-Parser
 BuildRequires:	intltool gnome-common
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
 Requires: %libnamegnome = %version
 #gw it does a dlopen on libplds4.so
