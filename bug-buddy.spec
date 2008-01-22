@@ -6,8 +6,8 @@
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
 Version:        2.20.1
-Release:	%mkrel 1
-License:	GPL
+Release:	%mkrel 2
+License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://www.gnome.org/
