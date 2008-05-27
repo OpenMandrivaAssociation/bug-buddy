@@ -6,10 +6,13 @@
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
 Version:        2.22.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+# (fc) 2.22.0-2mdv fix underlinking
+Patch0:		bug-buddy-2.22.0-fixunderlinking.patch
+
 URL:		http://www.gnome.org/
 BuildRequires:	libgnome-menu-devel
 BuildRequires:	gnome-desktop-devel
@@ -58,10 +61,14 @@ breakpad library.
 
 %prep
 %setup -q
+%patch0 -p1 -b .fixunderlinking
+
+#needed by patch0
+autoreconf
 
 %build
 
-CFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" CXXFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" %configure2_5x --disable-scrollkeeper
+CFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" CXXFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" %configure2_5x
 
 %make
 
