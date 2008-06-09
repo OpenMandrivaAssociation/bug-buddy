@@ -85,8 +85,12 @@ rm -rf %buildroot%_libdir/{%name/libbreakpad{.so,.a,.la},gtk-2.0/modules/libgnom
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -n %libname -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libname -p /sbin/ldconfig
+%endif
 
 %post
 %post_install_gconf_schemas %name
