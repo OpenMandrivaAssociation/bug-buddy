@@ -5,13 +5,11 @@
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.22.0
-Release:	%mkrel 2
+Version:        2.23.5
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-# (fc) 2.22.0-2mdv fix underlinking
-Patch0:		bug-buddy-2.22.0-fixunderlinking.patch
 
 URL:		http://www.gnome.org/
 BuildRequires:	libgnome-menu-devel
@@ -24,8 +22,8 @@ BuildRequires:	evolution-data-server-devel
 BuildRequires:	libgtop2.0-devel
 BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
-BuildRequires:	perl-XML-Parser
-BuildRequires:	intltool gnome-common
+BuildRequires:	intltool
+BuildRequires:	gnome-common
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
 Requires: %libnamegnome = %version
@@ -61,10 +59,6 @@ breakpad library.
 
 %prep
 %setup -q
-%patch0 -p1 -b .fixunderlinking
-
-#needed by patch0
-autoreconf
 
 %build
 
