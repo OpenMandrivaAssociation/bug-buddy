@@ -5,7 +5,7 @@
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.23.5.1
+Version:        2.23.6
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -103,7 +103,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 %{_datadir}/applications/*
 %_datadir/icons/hicolor/*/apps/%{name}*
+%_datadir/icons/HighContrastLargePrint/*/apps/bug-buddy*
 %{_datadir}/bug-buddy
+%_mandir/man1/bug*
 
 %ifarch %breakpadarch
 %files -n %libname
