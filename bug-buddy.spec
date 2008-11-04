@@ -13,15 +13,14 @@ Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.
 
 URL:		http://www.gnome.org/
 BuildRequires:	libgnome-menu-devel
-BuildRequires:	gnome-desktop-devel
+BuildRequires:	libbonobo2_x-devel
 BuildRequires:	gnome-doc-utils >= 0.3.2
-BuildRequires:  libxslt-proc
-BuildRequires:	libgnomeui2-devel
-BuildRequires:	libglade2.0-devel
 BuildRequires:	evolution-data-server-devel
 BuildRequires:	libgtop2.0-devel
 BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
+#gw libtool dep
+BuildRequires:	dbus-glib-devel
 BuildRequires:	intltool
 BuildRequires:	gnome-common
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
