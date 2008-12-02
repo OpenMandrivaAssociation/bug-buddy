@@ -20,7 +20,7 @@ BuildRequires:	libgtop2.0-devel
 BuildRequires:	libelfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
 #gw libtool dep
-BuildRequires:	dbus-glib-devel
+BuildRequires:	dbus-glib-devel libtasn1-devel
 BuildRequires:	intltool
 BuildRequires:	gnome-common
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
