@@ -5,7 +5,7 @@
 
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
-Version:        2.25.91
+Version:        2.26.0
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
