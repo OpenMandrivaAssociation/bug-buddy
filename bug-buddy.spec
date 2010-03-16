@@ -23,6 +23,7 @@ BuildRequires:	libsoup-devel >= 2.2.94
 BuildRequires:	dbus-glib-devel
 BuildRequires:	intltool
 BuildRequires:	gnome-common
+BuildRequires:	popt-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
 Requires: %libnamegnome = %version
@@ -36,6 +37,7 @@ submission process.  It can automatically obtain stack traces from core
 files or crashed applications.  Debian and KDE bug tracking systems are
 also supported.
 
+%ifarch breakpadarch
 %package -n %libname
 Summary: Crash dump library
 Group: System/Libraries
@@ -43,6 +45,7 @@ Group: System/Libraries
 %description -n %libname
 Breakpad is a set of client and server components which implement a
 crash-reporting system.
+%endif
 
 %package -n %libnamegnome
 Summary: GTK+ module for loading the crash dump library
