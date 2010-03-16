@@ -37,7 +37,7 @@ submission process.  It can automatically obtain stack traces from core
 files or crashed applications.  Debian and KDE bug tracking systems are
 also supported.
 
-%ifarch breakpadarch
+%ifarch %breakpadarch
 %package -n %libname
 Summary: Crash dump library
 Group: System/Libraries
