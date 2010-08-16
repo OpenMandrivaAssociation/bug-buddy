@@ -4,7 +4,7 @@
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
 Version:        2.31.3
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -67,16 +67,11 @@ rm -rf %buildroot%_libdir/gtk-2.0/modules/libgnomesegvhandler*a
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%post_install_gconf_schemas %name
-%update_icon_cache hicolor
-%update_icon_cache HighContrastLargePrint
+#gw gnomebreakpad was replaced by gnomesegvhandler
+%{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/gnome_settings_daemon/gtk-modules/gnomebreakpad false > /dev/null || :
 
 %preun
 %preun_uninstall_gconf_schemas %name
-
-%postun
-%clean_icon_cache hicolor
-%clean_icon_cache HighContrastLargePrint
 
 %files -f %name.lang
 %defattr(-, root, root)
