@@ -54,7 +54,7 @@ CFLAGS="`echo %optflags |sed -e 's/-fomit-frame-pointer//'`" CXXFLAGS="`echo %op
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %makeinstall_std
 %find_lang %name
@@ -64,7 +64,7 @@ rm -rf %buildroot%_libdir/gtk-2.0/modules/libgnomesegvhandler*a
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post
 #gw gnomebreakpad was replaced by gnomesegvhandler
