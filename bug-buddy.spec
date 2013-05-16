@@ -17,7 +17,7 @@ BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libebook-1.2)
 BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	evolution-data-server-devel
-BuildRequires:	libgtop2.0-devel
+BuildRequires:	pkgconfig(libgtop-2.0)
 BuildRequires:	elfutils-devel
 BuildRequires:	libsoup-devel >= 2.2.94
 #gw libtool dep
