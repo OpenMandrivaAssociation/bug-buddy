@@ -4,7 +4,7 @@
 Summary:	Utility to ease the reporting of bugs within the GNOME Desktop Environment
 Name:		bug-buddy
 Version:        2.32.0
-Release:	7
+Release:	8
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -25,7 +25,6 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	intltool
 BuildRequires:	gnome-common
 BuildRequires:	popt-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	gdb
 Requires: %libnamegnome = %version
 #gw it does a dlopen on libplds4.so
