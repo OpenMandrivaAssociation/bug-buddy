@@ -8,7 +8,7 @@ Release:	8
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Source0: 	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-URL:		http://www.gnome.org/
+URL:		https://www.gnome.org/
 BuildRequires:	gnome-menus-devel
 BuildRequires:	pkgconfig(libbonobo-2.0)
 BuildRequires:	pkgconfig(gnome-doc-utils)
